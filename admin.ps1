@@ -27,11 +27,11 @@ if (Command-Not-Exists choco) {
     [System.Net.ServicePointManager]::SecurityProtocol `
     -bor 3072
 
-  iex ((New-Object System.Net.WebClient) `
-    .DownloadString('https://chocolatey.org/install.ps1'))
+  iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
   Write-Output "Installed choco"
 }
+
 
 if (Command-Exists choco) {
   if (Command-Not-Exists git) {
@@ -51,7 +51,19 @@ if (Command-Exists choco) {
     choco install microsoft-windows-terminal
   }
 
-  if (Command-Not-Exist code) {
+  if (Command-Not-Exists code) {
     choco install vscode
+  }
+
+  if (Command-Not-Exists node) {
+    choco install nodejs
+  }
+
+  if (Command-Not-Exists dotnet) {
+    choco install dotnetcore-sdk
+  }
+
+  if (Command-Not-Exists gcc) {
+    choco install mingw
   }
 }
